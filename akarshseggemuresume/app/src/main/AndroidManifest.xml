@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sakarsh.akarshseggemuresume">
+    <!--Downloading the JSON file from the internet-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--Checking the internet connection-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--Creating a file and folder in the external storage-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--Reading a file from the external storage-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
