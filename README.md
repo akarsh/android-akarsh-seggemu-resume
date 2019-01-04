@@ -14,9 +14,12 @@ The resume is maintained in a JSON format following resume JSON structure.
 ## Features
 
 - [x] Download a remote JSON file in the application.
+- [x] Before storing the remote JSON file in the application the following checks are performed, 
+    - [x] If the application is running on an emulator or a mobile device.
+    - [x] If external storage (SD card) is present and it is removable.
 - [x] Store the downloaded remote JSON file in the application.
-- [x] Read the stored JSON file in the application.
-- [x] Pass data from resume schema layout view controller to other view controllers.
+- [ ] Read the stored JSON file in the application.
+- [ ] Pass data from resume schema layout to other layouts.
 
 ## Requirements
 
