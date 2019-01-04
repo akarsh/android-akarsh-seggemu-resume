@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">Akarsh Seggemu resume</string>
     <string name="flag_of_uk">flag of UK</string>
+    <string name="contact">Contact</string>
+    <string name="info">Info</string>
+    <string name="summary">Summary</string>
+    <string name="profiles">Profiles</string>
+    <string name="skills">Skills</string>
+    <string name="languages">Languages</string>
+    <string name="education">Education</string>
+    <string name="experience">Experience</string>
+    <string name="volunteer">Volunteer</string>
+    <string name="awards">Awards</string>
+    <string name="publications">Publications</string>
+    <string name="interests">Interests</string>
+    <string name="references">References</string>
+    <string name="nationality">Nationality</string>
+    <string name="work_permit">Work permit</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="place_of_birth">Place of birth</string>
 </resources>

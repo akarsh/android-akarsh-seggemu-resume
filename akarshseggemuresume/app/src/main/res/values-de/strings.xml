@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Akarsh Seggemu Lebenslauf</string>
+    <string name="flag_of_uk">Flagge von Großbritannien</string>
+    <string name="contact">Kontakt</string>
+    <string name="info">Info</string>
+    <string name="summary">Zusammenfassung</string>
+    <string name="profiles">Profil</string>
+    <string name="skills">Fähigkeiten</string>
+    <string name="languages">Sprachen</string>
+    <string name="education">Ausbildung</string>
+    <string name="experience">Berufserfahrung</string>
+    <string name="volunteer">Gemeinnützig</string>
+    <string name="awards">Auszeichnung</string>
+    <string name="publications">Publikation</string>
+    <string name="interests">Interessen</string>
+    <string name="references">Referenzen</string>
+    <string name="nationality">Nationalität</string>
+    <string name="work_permit">Arbeitserlaubnis</string>
+    <string name="date_of_birth">Geburtsdatum</string>
+    <string name="place_of_birth">Geburtsort</string>
+</resources>
