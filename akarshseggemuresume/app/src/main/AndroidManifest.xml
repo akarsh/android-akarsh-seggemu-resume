@@ -5,10 +5,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <!--Checking the internet connection-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--Creating a file and folder in the external storage-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!--Reading a file from the external storage-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--Creating a file and folder in the external storage-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 
     <application
         android:allowBackup="true"

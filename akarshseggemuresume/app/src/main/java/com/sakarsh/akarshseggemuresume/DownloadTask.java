@@ -56,13 +56,14 @@ public class DownloadTask {
                     downloadInInternalStorage(httpsURLConnection);
                 } else {
 //                    Log.i(TAG, "Not on Emulator");
-                    if (new CheckExternalStorage().isExternalStoragePresent()) {
+//                    Log.i(TAG, "Storage removable: " + new CheckExternalStorage().isExternalStorageRemovable());
+//                    Checking if external storage is present and it is removable
+                    if (new CheckExternalStorage().isExternalStoragePresent() && (new CheckExternalStorage().isExternalStorageRemovable())) {
+
                         File externalStorage = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + downloadDirectory);
                         if (!externalStorage.exists()) {
-                            externalStorage.mkdir();
+                            externalStorage.mkdirs();
                             Log.i(TAG, downloadDirectory + " directory is created");
-                        }
-                        try {
                             File outputFile = new File(externalStorage, downloadFileName);
                             Log.i(TAG, outputFile + " file path");
                             if (!outputFile.exists()) {
@@ -80,8 +81,6 @@ public class DownloadTask {
                             Log.i(TAG, downloadFileName + " file has been written");
                             fileOutputStream.close();
                             inputStream.close();
-                        } catch (Exception e) {
-                            e.printStackTrace();
                         }
                     } else {
                         downloadInInternalStorage(httpsURLConnection);
