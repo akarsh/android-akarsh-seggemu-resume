@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sakarsh.akarshseggemuresume">
-    <!--Downloading the JSON file from the internet-->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!--Checking the internet connection-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--Reading a file from the external storage-->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!--Creating a file and folder in the external storage-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <!-- Downloading the JSON file from the internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Checking the internet connection -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Reading a file from the external storage -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- Creating a file and folder in the external storage -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -25,9 +25,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".ResumeSchemaActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

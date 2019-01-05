@@ -18,4 +18,6 @@
     <string name="work_permit">Work permit</string>
     <string name="date_of_birth">Date of birth</string>
     <string name="place_of_birth">Place of birth</string>
+    <string name="english_resume" translatable="false">English resume</string>
+    <string name="deutsch_lebenslauf" translatable="false">Deutsch lebenslauf</string>
 </resources>
