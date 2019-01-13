@@ -9,20 +9,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainListAdapter extends ArrayAdapter<Integer> {
-    private final Activity context;
+    private final Activity activity;
     private final Integer[] resumeNameArrays;
     private final Integer[] imagesOfLanguagesArrays;
 
-    public MainListAdapter(Activity context, Integer[] resumeNameArrays, Integer[] imagesOfLanguagesArrays) {
-        super(context, R.layout.activity_linear_layout_main, resumeNameArrays);
+    public MainListAdapter(Activity activity, Integer[] resumeNameArrays, Integer[] imagesOfLanguagesArrays) {
+        super(activity, R.layout.activity_linear_layout_main, resumeNameArrays);
 
-        this.context = context;
+        this.activity = activity;
         this.resumeNameArrays = resumeNameArrays;
         this.imagesOfLanguagesArrays = imagesOfLanguagesArrays;
     }
 
     public View getView(int position, View view, ViewGroup parent) {
-        LayoutInflater inflater = context.getLayoutInflater();
+        LayoutInflater inflater = activity.getLayoutInflater();
         View rowView = inflater.inflate(R.layout.activity_linear_layout_main, null, true);
 
         TextView textTitle = rowView.findViewById(R.id.textView);

@@ -1,12 +1,34 @@
 package com.sakarsh.akarshseggemuresume;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
+import android.os.LocaleList;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.Serializable;
+import java.net.Inet4Address;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class ResumeSchemaActivity extends AppCompatActivity {
@@ -45,6 +67,11 @@ public class ResumeSchemaActivity extends AppCompatActivity {
     ListView listView;
 
     private static final String TAG = "ResumeSchema";
+    private String languageToLoad, resumeFileName;
+
+    private Resume resume;
+
+    Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +79,202 @@ public class ResumeSchemaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_resume_schema);
 
 //        Get values from Intent
-        String languageToLoad = getIntent().getStringExtra("languageToLoad");
+        languageToLoad = getIntent().getStringExtra("languageToLoad");
 //        Log.i(TAG, "Language: "+languageToLoad);
-        Log.i(TAG, "Locale default language " + Locale.getDefault().getDisplayLanguage());
+//        Log.i(TAG, "Locale default language " + Locale.getDefault().getLanguage());
+
+//        set the resume file to chosen language
+        setResumeFileToChosenLanguage();
+
+        setContentsForListView();
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
+
+    private void setContentsForListView() {
         ResumeSchemaListAdapter adapter = new ResumeSchemaListAdapter(this, resumeSchemaArrays, imagesOfResumeSchemaArrays);
 
         listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                0 means Contact
+                if (position == 0) {
+                    Intent intent = new Intent(view.getContext(), ContactActivity.class);
+                    intent.putExtra("name", resume.getBasics().getName());
+                    intent.putExtra("label", resume.getBasics().getLabel());
+                    intent.putExtra("email", resume.getBasics().getEmail());
+                    intent.putExtra("phone",resume.getBasics().getPhone());
+                    intent.putExtra("website", resume.getBasics().getWebsite());
+                    intent.putExtra("location", resume.getBasics().getLocation().getAddress());
+                    intent.putExtra("postalCode", resume.getBasics().getLocation().getPostalCode());
+                    intent.putExtra("region", resume.getBasics().getLocation().getRegion());
+                    intent.putExtra("city", resume.getBasics().getLocation().getCity());
+                    intent.putExtra("countryCode", resume.getBasics().getLocation().getCountryCode());
+                    intent.putExtra("imageURL", resume.getBasics().getPicture());
+                    startActivity(intent);
+                }
+//                1 means Info
+                if (position == 1) {
+                    Intent intent = new Intent(view.getContext(), InfoActivity.class);
+                    intent.putExtra("nationality", resume.getBasics().getInfo().getNationality());
+                    intent.putExtra("workPermit", resume.getBasics().getInfo().getWorkPermit());
+                    intent.putExtra("dateOfBirth", resume.getBasics().getInfo().getDateOfBirth());
+                    intent.putExtra("placeOfBirth", resume.getBasics().getInfo().getPlaceOfBirth());
+                    LocaleHelper.setLocale( getApplicationContext(), languageToLoad);
+                    startActivity(intent);
+                }
+//                2 means Summary
+                if (position == 2) {
+                    Intent intent = new Intent(view.getContext(), SummaryActivity.class);
+                    intent.putExtra("summary", resume.getBasics().getSummary());
+                    startActivity(intent);
+                }
+//                3 means Profiles
+                if (position == 3) {
+                    Intent intent = new Intent(view.getContext(), ProfilesActivity.class);
+                    String JSONString = gson.toJson(resume.getBasics().getProfiles());
+                    intent.putExtra("profiles", JSONString);
+                    startActivity(intent);
+                }
+//                4 means Skills
+                if (position == 4) {
+                    Intent intent = new Intent(view.getContext(), SkillsActivity.class);
+                    String JSONString = gson.toJson(resume.getSkills());
+                    intent.putExtra("skills", JSONString);
+                    startActivity(intent);
+                }
+//                5 means Languages
+                if (position == 5) {
+                    Intent intent = new Intent(view.getContext(), LanguagesActivity.class);
+                    String JSONString = gson.toJson(resume.getLanguages());
+                    intent.putExtra("languages", JSONString);
+                    startActivity(intent);
+                }
+//                6 means Education
+                if (position == 6) {
+                    Intent intent = new Intent(view.getContext(), EducationActivity.class);
+                    String JSONString = gson.toJson(resume.getEducation());
+                    intent.putExtra("education", JSONString);
+                    startActivity(intent);
+                }
+//                7 means Experience
+                if (position == 7) {
+                    Intent intent = new Intent(view.getContext(), ExperienceActivity.class);
+                    String JSONString = gson.toJson(resume.getWork());
+                    intent.putExtra("experience", JSONString);
+                    startActivity(intent);
+                }
+//                8 means Volunteer
+                if (position == 8) {
+                    Intent intent = new Intent(view.getContext(), VolunteerActivity.class);
+                    String JSONString = gson.toJson(resume.getVolunteer());
+                    intent.putExtra("volunteer", JSONString);
+                    startActivity(intent);
+                }
+//                9 means Awards
+                if (position == 9) {
+                    Intent intent = new Intent(view.getContext(), AwardsActivity.class);
+                    String JSONString = gson.toJson(resume.getAwards());
+                    intent.putExtra("awards", JSONString);
+                    startActivity(intent);
+                }
+//                10 means Publications
+                if (position == 10) {
+                    Intent intent = new Intent(view.getContext(), PublicationsActivity.class);
+                    String JSONString = gson.toJson(resume.getPublications());
+                    intent.putExtra("publications", JSONString);
+                    startActivity(intent);
+                }
+//                11 means Interests
+                if (position == 11) {
+                    Intent intent = new Intent(view.getContext(), InterestsActivity.class);
+                    String JSONString = gson.toJson(resume.getInterests());
+                    intent.putExtra("interests", JSONString);
+                    startActivity(intent);
+                }
+//                12 means References
+                if (position == 12) {
+                    Intent intent = new Intent(view.getContext(), ReferencesActivity.class);
+                    String JSONString = gson.toJson(resume.getReferences());
+                    intent.putExtra("references", JSONString);
+                    startActivity(intent);
+                }
+            }
+        });
     }
+
+    private void setResumeFileToChosenLanguage() {
+        if (languageToLoad.equals("en")) {
+            resumeFileName = "EnglishResume.json";
+//            Log.i(TAG, "resume file name: "+resumeFileName);
+            openFileFromStorage();
+        } else if (languageToLoad.equals("de")) {
+            Log.i(TAG, "Language: "+languageToLoad);
+            resumeFileName = "DeutschResume.json";
+//            Log.i(TAG, "resume file name: "+resumeFileName);
+            openFileFromStorage();
+        }
+
+    }
+
+    private void openFileFromStorage() {
+        if (new CheckEmulator().isEmulator()) {
+            openFileFromInternalStorage();
+        } else {
+            if (new CheckExternalStorage().isExternalStoragePresent() && (new CheckExternalStorage().isExternalStorageRemovable())) {
+                openFileFromExternalStorage();
+            } else {
+                openFileFromInternalStorage();
+            }
+            }
+    }
+
+    private void openFileFromExternalStorage() {
+        // TODO: add how to open file from external storage
+    }
+
+    private void openFileFromInternalStorage() {
+        try {
+            FileInputStream fileInputStream = openFileInput(resumeFileName);
+            readFile(fileInputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void readFile(FileInputStream fileInputStream) {
+        try {
+            Reader reader = new InputStreamReader(fileInputStream);
+            resume = gson.fromJson(reader, Resume.class);
+
+            downloadImageFromURL();
+
+            fileInputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private boolean checkInternetConnection() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
+    public void downloadImageFromURL() {
+        if (checkInternetConnection()) {
+            new DownloadImage(ResumeSchemaActivity.this, resume.getBasics().getPicture());
+        } else {
+            Toast.makeText(ResumeSchemaActivity.this, "There is no internet connection", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 }

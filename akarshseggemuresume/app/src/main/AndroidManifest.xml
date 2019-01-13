@@ -35,6 +35,19 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity android:name=".ContactActivity" />
+        <activity android:name=".InfoActivity" />
+        <activity android:name=".SummaryActivity" />
+        <activity android:name=".ProfilesActivity" />
+        <activity android:name=".SkillsActivity" />
+        <activity android:name=".LanguagesActivity" />
+        <activity android:name=".EducationActivity" />
+        <activity android:name=".ExperienceActivity" />
+        <activity android:name=".VolunteerActivity" />
+        <activity android:name=".AwardsActivity" />
+        <activity android:name=".PublicationsActivity" />
+        <activity android:name=".InterestsActivity" />
+        <activity android:name=".ReferencesActivity"></activity>
     </application>
 
 </manifest>

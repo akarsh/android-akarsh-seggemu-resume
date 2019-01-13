@@ -60,28 +60,15 @@ public class MainActivity extends AppCompatActivity {
                 if (position == 0) {
                     Intent intent = new Intent(view.getContext(), ResumeSchemaActivity.class);
                     intent.putExtra("languageToLoad", loadEnglishLanguage);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    LocaleHelper.setLocale( getApplicationContext(), loadEnglishLanguage);
                     startActivity(intent);
                 }
 
                 if (position == 1) {
-                    Locale locale = new Locale(loadDeutschLanguage);
-                    Locale.setDefault(locale);
-
-                    Configuration configuration = getApplicationContext().getResources().getConfiguration();
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        configuration.setLocale(locale);
-                        configuration.setLayoutDirection(locale);
-//                        Log.i("BuildVersion", ""+Build.VERSION.SDK_INT);
-                        getApplicationContext().createConfigurationContext(configuration);
-                    } else {
-                        configuration.locale = locale;
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                            configuration.setLayoutDirection(locale);
-                        }
-                        getApplicationContext().getResources().updateConfiguration(configuration, getApplicationContext().getResources().getDisplayMetrics());
-                    }
                     Intent intent = new Intent(view.getContext(), ResumeSchemaActivity.class);
                     intent.putExtra("languageToLoad", loadDeutschLanguage);
+                    LocaleHelper.setLocale(getApplicationContext(), loadDeutschLanguage);
                     startActivity(intent);
                 }
             }
@@ -102,7 +89,4 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "There is no internet connection", Toast.LENGTH_SHORT).show();
         }
     }
-
-//    TODO: read the JSON file
-
 }
