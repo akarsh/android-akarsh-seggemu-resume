@@ -30,8 +30,18 @@ public class ProfilesListAdapter extends ArrayAdapter<Integer> {
         TextView textTitle = rowView.findViewById(R.id.textView);
         ImageView imageView = rowView.findViewById(R.id.imageView);
 
-        textTitle.setText(profileArrayList.get(position).getUsername());
-        imageView.setImageResource(imagesOfProfilesArrays[position]);
+        if (profileArrayList.get(position).getUsername() != null) {
+            textTitle.setText(profileArrayList.get(position).getUsername());
+        } else {
+            textTitle.setVisibility(View.GONE);
+        }
+
+        if (imagesOfProfilesArrays[position] != null) {
+            imageView.setImageResource(imagesOfProfilesArrays[position]);
+        } else {
+            imageView.setVisibility(View.GONE);
+        }
+
 
         return rowView;
     }

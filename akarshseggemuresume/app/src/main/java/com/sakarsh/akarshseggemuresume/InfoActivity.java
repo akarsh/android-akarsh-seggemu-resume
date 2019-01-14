@@ -3,6 +3,7 @@ package com.sakarsh.akarshseggemuresume;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class InfoActivity extends AppCompatActivity {
@@ -17,10 +18,26 @@ public class InfoActivity extends AppCompatActivity {
         TextView textViewDateOfBirth = findViewById(R.id.textViewDateOfBirth);
         TextView textViewPlaceOfBirth = findViewById(R.id.textViewPlaceOfBirth);
 
-        textViewNationality.setText(getIntent().getStringExtra("nationality"));
-        textViewWorkPermit.setText(getIntent().getStringExtra("workPermit"));
-        textViewDateOfBirth.setText(getIntent().getStringExtra("dateOfBirth"));
-        textViewPlaceOfBirth.setText(getIntent().getStringExtra("placeOfBirth"));
+        if (getIntent().getStringExtra("nationality") != null) {
+            textViewNationality.setText(getIntent().getStringExtra("nationality"));
+        } else {
+            textViewNationality.setVisibility(View.GONE);
+        }
+        if (getIntent().getStringExtra("workPermit") != null) {
+            textViewWorkPermit.setText(getIntent().getStringExtra("workPermit"));
+        } else {
+            textViewWorkPermit.setVisibility(View.GONE);
+        }
+        if (getIntent().getStringExtra("dateOfBirth") != null) {
+            textViewDateOfBirth.setText(getIntent().getStringExtra("dateOfBirth"));
+        } else {
+            textViewDateOfBirth.setVisibility(View.GONE);
+        }
+        if (getIntent().getStringExtra("placeOfBirth") != null) {
+            textViewPlaceOfBirth.setText(getIntent().getStringExtra("placeOfBirth"));
+        } else {
+            textViewPlaceOfBirth.setVisibility(View.GONE);
+        }
     }
 
     @Override

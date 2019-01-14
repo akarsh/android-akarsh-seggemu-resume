@@ -30,12 +30,36 @@ public class VolunteerListAdapter extends ArrayAdapter<Volunteer> {
         TextView textViewVolunteerEndDate = rowView.findViewById(R.id.textViewEducationEndDate);
         TextView textViewSummary = rowView.findViewById(R.id.textViewGPA);
 
-        textViewOrganization.setText(volunteerArrayList.get(position).getOrganization());
-        textViewPosition.setText(volunteerArrayList.get(position).getPosition());
-        textViewWebsite.setText(volunteerArrayList.get(position).getWebsite());
-        textViewVolunteerStartDate.setText(volunteerArrayList.get(position).getStartDate());
-        textViewVolunteerEndDate.setText(volunteerArrayList.get(position).getEndDate());
-        textViewSummary.setText(volunteerArrayList.get(position).getSummary());
+        if (volunteerArrayList.get(position).getOrganization() != null) {
+            textViewOrganization.setText(volunteerArrayList.get(position).getOrganization());
+        } else {
+            textViewOrganization.setVisibility(View.GONE);
+        }
+        if (volunteerArrayList.get(position).getPosition() != null) {
+            textViewPosition.setText(volunteerArrayList.get(position).getPosition());
+        } else {
+            textViewPosition.setVisibility(View.GONE);
+        }
+        if (volunteerArrayList.get(position).getWebsite() != null) {
+            textViewWebsite.setText(volunteerArrayList.get(position).getWebsite());
+        } else {
+            textViewWebsite.setVisibility(View.GONE);
+        }
+        if (volunteerArrayList.get(position).getStartDate() != null) {
+            textViewVolunteerStartDate.setText(volunteerArrayList.get(position).getStartDate());
+        } else {
+            textViewVolunteerStartDate.setVisibility(View.GONE);
+        }
+        if (volunteerArrayList.get(position).getEndDate() != null) {
+            textViewVolunteerEndDate.setText(volunteerArrayList.get(position).getEndDate());
+        } else {
+            textViewVolunteerEndDate.setVisibility(View.GONE);
+        }
+        if (volunteerArrayList.get(position).getSummary() != null) {
+            textViewSummary.setText(volunteerArrayList.get(position).getSummary());
+        } else {
+            textViewSummary.setVisibility(View.GONE);
+        }
 
         return rowView;
     }

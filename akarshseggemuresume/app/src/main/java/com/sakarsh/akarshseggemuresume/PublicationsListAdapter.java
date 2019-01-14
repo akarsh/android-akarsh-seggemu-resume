@@ -29,11 +29,36 @@ public class PublicationsListAdapter extends ArrayAdapter<Publication> {
         TextView textViewReleaseDate = rowView.findViewById(R.id.textViewReleaseDate);
         TextView textViewSummary = rowView.findViewById(R.id.textViewSummary);
 
-        textViewName.setText(publicationArrayList.get(position).getName());
-        textViewPublisher.setText(publicationArrayList.get(position).getPublisher());
-        textViewWebsite.setText(publicationArrayList.get(position).getWebsite());
-        textViewReleaseDate.setText(publicationArrayList.get(position).getReleaseDate());
-        textViewSummary.setText(publicationArrayList.get(position).getSummary());
+        if (publicationArrayList.get(position).getName() != null) {
+            textViewName.setText(publicationArrayList.get(position).getName());
+        } else {
+            textViewName.setVisibility(View.GONE);
+        }
+
+        if (publicationArrayList.get(position).getPublisher() != null) {
+            textViewPublisher.setText(publicationArrayList.get(position).getPublisher());
+        } else {
+            textViewPublisher.setVisibility(View.GONE);
+        }
+
+        if (publicationArrayList.get(position).getWebsite() != null) {
+            textViewWebsite.setText(publicationArrayList.get(position).getWebsite());
+        } else {
+            textViewWebsite.setVisibility(View.GONE);
+        }
+
+        if (publicationArrayList.get(position).getReleaseDate() != null) {
+            textViewReleaseDate.setText(publicationArrayList.get(position).getReleaseDate());
+        } else {
+            textViewReleaseDate.setVisibility(View.GONE);
+        }
+
+        if (publicationArrayList.get(position).getSummary() != null) {
+            textViewSummary.setText(publicationArrayList.get(position).getSummary());
+        } else {
+            textViewSummary.setVisibility(View.GONE);
+        }
+
 
         return rowView;
     }

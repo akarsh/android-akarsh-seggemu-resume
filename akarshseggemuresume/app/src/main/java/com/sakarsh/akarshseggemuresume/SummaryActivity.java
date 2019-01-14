@@ -2,6 +2,7 @@ package com.sakarsh.akarshseggemuresume;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class SummaryActivity extends AppCompatActivity {
@@ -13,6 +14,10 @@ public class SummaryActivity extends AppCompatActivity {
 
         TextView textViewSummary = findViewById(R.id.textViewSummary);
 
-        textViewSummary.setText(getIntent().getStringExtra("summary"));
+        if (getIntent().getStringExtra("summary") != null) {
+            textViewSummary.setText(getIntent().getStringExtra("summary"));
+        } else {
+            textViewSummary.setVisibility(View.GONE);
+        }
     }
 }

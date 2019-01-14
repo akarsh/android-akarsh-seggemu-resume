@@ -29,9 +29,13 @@ public class ReferencesListAdapter extends ArrayAdapter<Reference> {
 
         if (referencesArrayList.get(position).getName() != null) {
             textViewName.setText(referencesArrayList.get(position).getName());
+        } else {
+            textViewName.setVisibility(View.GONE);
         }
         if (referencesArrayList.get(position).getReference() != null) {
             textViewKeywords.setText(referencesArrayList.get(position).getReference());
+        } else {
+            textViewKeywords.setVisibility(View.GONE);
         }
 
         return rowView;

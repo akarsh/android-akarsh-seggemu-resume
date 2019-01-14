@@ -25,8 +25,8 @@ public class SkillsActivity extends AppCompatActivity {
         Type listOfSkills = new TypeToken<List<Skill>>() {}.getType();
         List<Skill> skillsArrayList = gson.fromJson(jsonString, listOfSkills);
 
-        SkillsAdapter skillsAdapter = new SkillsAdapter(this, skillsArrayList);
+        SkillsListAdapter skillsListAdapter = new SkillsListAdapter(this, skillsArrayList);
         listView = findViewById(R.id.listView);
-        listView.setAdapter(skillsAdapter);
+        listView.setAdapter(skillsListAdapter);
     }
 }

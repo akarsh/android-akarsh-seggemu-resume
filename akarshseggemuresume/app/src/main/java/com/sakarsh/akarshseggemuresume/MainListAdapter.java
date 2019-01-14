@@ -28,8 +28,18 @@ public class MainListAdapter extends ArrayAdapter<Integer> {
         TextView textTitle = rowView.findViewById(R.id.textView);
         ImageView imageView = rowView.findViewById(R.id.imageView);
 
-        textTitle.setText(resumeNameArrays[position]);
-        imageView.setImageResource(imagesOfLanguagesArrays[position]);
+        if (resumeNameArrays[position] != null) {
+            textTitle.setText(resumeNameArrays[position]);
+        } else {
+            textTitle.setVisibility(View.GONE);
+        }
+
+        if (imagesOfLanguagesArrays[position] != null) {
+            imageView.setImageResource(imagesOfLanguagesArrays[position]);
+        } else {
+            imageView.setVisibility(View.GONE);
+        }
+
         return rowView;
     }
 }

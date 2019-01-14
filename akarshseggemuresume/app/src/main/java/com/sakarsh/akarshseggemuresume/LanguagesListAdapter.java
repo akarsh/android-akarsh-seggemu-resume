@@ -30,9 +30,13 @@ public class LanguagesListAdapter extends ArrayAdapter<Language> {
 
         if (languagesArrayList.get(position).getLanguage() != null) {
             textViewLanguage.setText(languagesArrayList.get(position).getLanguage());
+        } else {
+            textViewLanguage.setVisibility(View.GONE);
         }
         if (languagesArrayList.get(position).getFluency() != null) {
             textViewFluency.setText(languagesArrayList.get(position).getFluency());
+        } else {
+            textViewFluency.setVisibility(View.GONE);
         }
 
         return  rowView;

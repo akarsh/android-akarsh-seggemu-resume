@@ -28,10 +28,26 @@ public class AwardsListAdapter extends ArrayAdapter<Award> {
         TextView textViewDate = rowView.findViewById(R.id.textViewDate);
         TextView textViewSummary = rowView.findViewById(R.id.textViewSummary);
 
-        textViewTitle.setText(awardsArrayList.get(position).getTitle());
-        textViewAwarder.setText(awardsArrayList.get(position).getAwarder());
-        textViewDate.setText(awardsArrayList.get(position).getDate());
-        textViewSummary.setText(awardsArrayList.get(position).getSummary());
+        if (awardsArrayList.get(position).getTitle() != null) {
+            textViewTitle.setText(awardsArrayList.get(position).getTitle());
+        } else {
+            textViewTitle.setVisibility(View.GONE);
+        }
+        if (awardsArrayList.get(position).getAwarder() != null) {
+            textViewAwarder.setText(awardsArrayList.get(position).getAwarder());
+        } else {
+            textViewAwarder.setVisibility(View.GONE);
+        }
+        if (awardsArrayList.get(position).getDate() != null) {
+            textViewDate.setText(awardsArrayList.get(position).getDate());
+        } else {
+            textViewDate.setVisibility(View.GONE);
+        }
+        if (awardsArrayList.get(position).getSummary() != null) {
+            textViewSummary.setText(awardsArrayList.get(position).getSummary());
+        } else {
+            textViewSummary.setVisibility(View.GONE);
+        }
 
         return rowView;
     }

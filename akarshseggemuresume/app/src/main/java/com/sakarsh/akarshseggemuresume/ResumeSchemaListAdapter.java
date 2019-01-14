@@ -27,9 +27,16 @@ public class ResumeSchemaListAdapter extends ArrayAdapter<Integer> {
         TextView textTitle = rowView.findViewById(R.id.textView);
         ImageView imageView = rowView.findViewById(R.id.imageView);
 
-        textTitle.setText(resumeSchemaArrays[position]);
-        imageView.setImageResource(imagesOfResumeSchemaArrays[position]);
-
+        if (resumeSchemaArrays[position] != null) {
+            textTitle.setText(resumeSchemaArrays[position]);
+        } else {
+            textTitle.setVisibility(View.GONE);
+        }
+        if (imagesOfResumeSchemaArrays[position] != null) {
+            imageView.setImageResource(imagesOfResumeSchemaArrays[position]);
+        } else {
+            imageView.setVisibility(View.GONE);
+        }
         return rowView;
     }
 }

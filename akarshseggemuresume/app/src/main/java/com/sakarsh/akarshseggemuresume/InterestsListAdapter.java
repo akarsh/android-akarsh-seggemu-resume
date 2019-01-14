@@ -29,9 +29,13 @@ public class InterestsListAdapter extends ArrayAdapter<Interest> {
 
         if (interestArrayList.get(position).getName() != null) {
             textViewName.setText(interestArrayList.get(position).getName());
+        } else {
+            textViewName.setVisibility(View.GONE);
         }
         if (interestArrayList.get(position).getKeywords() != null) {
             textViewKeywords.setText(TextUtils.join(", ", interestArrayList.get(position).getKeywords()));
+        } else {
+            textViewKeywords.setVisibility(View.GONE);
         }
 
         return rowView;

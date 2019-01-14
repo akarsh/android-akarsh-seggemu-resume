@@ -10,11 +10,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class SkillsAdapter extends ArrayAdapter<Skill> {
+public class SkillsListAdapter extends ArrayAdapter<Skill> {
     private final Activity activity;
     private final List<Skill> skillsArrayList;
 
-    public SkillsAdapter(Activity activity, List<Skill> skillsArrayList) {
+    public SkillsListAdapter(Activity activity, List<Skill> skillsArrayList) {
         super(activity, R.layout.activity_linear_layout_skills, skillsArrayList);
         this.activity = activity;
         this.skillsArrayList = skillsArrayList;
@@ -27,9 +27,15 @@ public class SkillsAdapter extends ArrayAdapter<Skill> {
         TextView textViewSkillName = rowView.findViewById(R.id.textViewSkillName);
         TextView textViewKeywords = rowView.findViewById(R.id.textViewKeywords);
 
-        textViewSkillName.setText(skillsArrayList.get(position).getName());
+        if (skillsArrayList.get(position).getName() != null) {
+            textViewSkillName.setText(skillsArrayList.get(position).getName());
+        } else {
+            textViewSkillName.setVisibility(View.GONE);
+        }
         if (skillsArrayList.get(position).getKeywords() != null) {
             textViewKeywords.setText(TextUtils.join(", ", skillsArrayList.get(position).getKeywords()));
+        } else {
+            textViewKeywords.setVisibility(View.GONE);
         }
         return rowView;
     }

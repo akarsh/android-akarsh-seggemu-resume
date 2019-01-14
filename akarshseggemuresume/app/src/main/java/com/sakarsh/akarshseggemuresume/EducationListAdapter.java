@@ -30,12 +30,42 @@ public class EducationListAdapter extends ArrayAdapter<Education> {
         TextView textViewEducationEndDate = rowView.findViewById(R.id.textViewEducationEndDate);
         TextView textViewGPA = rowView.findViewById(R.id.textViewGPA);
 
-        textViewInstitution.setText(educationArrayList.get(position).getInstitution());
-        textViewArea.setText(educationArrayList.get(position).getArea());
-        textViewStudyType.setText(educationArrayList.get(position).getStudyType());
-        textViewEducationStartDate.setText(educationArrayList.get(position).getStartDate());
-        textViewEducationEndDate.setText(educationArrayList.get(position).getEndDate());
-        textViewGPA.setText(educationArrayList.get(position).getGpa());
+        if (educationArrayList.get(position).getInstitution() != null) {
+            textViewInstitution.setText(educationArrayList.get(position).getInstitution());
+        } else {
+            textViewInstitution.setVisibility(View.GONE);
+        }
+        if (educationArrayList.get(position).getArea() != null) {
+            textViewArea.setText(educationArrayList.get(position).getArea());
+        } else {
+            textViewArea.setVisibility(View.GONE);
+        }
+        if (educationArrayList.get(position).getStudyType() != null) {
+            textViewStudyType.setText(educationArrayList.get(position).getStudyType());
+        } else {
+            textViewStudyType.setVisibility(View.GONE);
+        }
+        if (educationArrayList.get(position).getStartDate() != null) {
+            textViewEducationStartDate.setText(educationArrayList.get(position).getStartDate());
+        } else {
+            textViewEducationStartDate.setVisibility(View.GONE);
+        }
+        if (educationArrayList.get(position).getEndDate() != null) {
+            textViewEducationEndDate.setText(educationArrayList.get(position).getEndDate());
+        } else {
+            textViewEducationEndDate.setVisibility(View.GONE);
+        }
+        if (educationArrayList.get(position).getGpa() != null) {
+            textViewGPA.setText(educationArrayList.get(position).getGpa());
+        } else {
+            textViewGPA.setVisibility(View.GONE);
+        }
+
+
+
+
+
+
 
         return rowView;
     }

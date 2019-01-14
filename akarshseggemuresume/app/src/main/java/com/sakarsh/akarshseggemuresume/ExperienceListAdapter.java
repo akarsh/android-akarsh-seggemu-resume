@@ -35,27 +35,56 @@ public class ExperienceListAdapter extends ArrayAdapter<Work> {
         TextView textViewExperienceEndDate = rowView.findViewById(R.id.textViewEducationEndDate);
         TextView textViewHighlights = rowView.findViewById(R.id.textViewGPA);
 
-        textViewCompany.setText(experienceArrayList.get(position).getCompany());
-        textViewPosition.setText(experienceArrayList.get(position).getPosition());
-        textViewWebsite.setText(experienceArrayList.get(position).getWebsite());
-        textViewExperienceStartDate.setText(experienceArrayList.get(position).getStartDate());
-        textViewExperienceEndDate.setText(experienceArrayList.get(position).getEndDate());
-
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        for (String string : experienceArrayList.get(position).getHighlights()) {
-            int contentStart = spannableStringBuilder.length();
-
-            spannableStringBuilder.append(string+"\n");
-
-            int contentEnd = spannableStringBuilder.length();
-            spannableStringBuilder.setSpan(
-                    new BulletSpan(10),
-                    contentStart,
-                    contentEnd,
-                    Spannable.SPAN_INCLUSIVE_EXCLUSIVE
-            );
+        if (experienceArrayList.get(position).getCompany() != null) {
+            textViewCompany.setText(experienceArrayList.get(position).getCompany());
+        } else {
+            textViewCompany.setVisibility(View.GONE);
         }
-        textViewHighlights.setText(spannableStringBuilder);
+
+        if (experienceArrayList.get(position).getPosition() != null) {
+            textViewPosition.setText(experienceArrayList.get(position).getPosition());
+        } else {
+            textViewPosition.setVisibility(View.GONE);
+        }
+
+        if (experienceArrayList.get(position).getWebsite() != null) {
+            textViewWebsite.setText(experienceArrayList.get(position).getWebsite());
+        } else {
+            textViewWebsite.setVisibility(View.GONE);
+        }
+
+        if (experienceArrayList.get(position).getStartDate() != null) {
+                textViewExperienceStartDate.setText(experienceArrayList.get(position).getStartDate());
+        } else {
+                textViewExperienceStartDate.setVisibility(View.GONE);
+        }
+
+        if (experienceArrayList.get(position).getEndDate() != null) {
+            textViewExperienceEndDate.setText(experienceArrayList.get(position).getEndDate());
+        } else {
+            textViewExperienceEndDate.setVisibility(View.GONE);
+        }
+
+        if (experienceArrayList.get(position).getHighlights() != null) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            for (String string : experienceArrayList.get(position).getHighlights()) {
+                int contentStart = spannableStringBuilder.length();
+
+                spannableStringBuilder.append(string+"\n");
+
+                int contentEnd = spannableStringBuilder.length();
+                spannableStringBuilder.setSpan(
+                        new BulletSpan(10),
+                        contentStart,
+                        contentEnd,
+                        Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+                );
+            }
+            textViewHighlights.setText(spannableStringBuilder);
+        } else {
+            textViewHighlights.setVisibility(View.GONE);
+        }
+
 
         return rowView;
     }
