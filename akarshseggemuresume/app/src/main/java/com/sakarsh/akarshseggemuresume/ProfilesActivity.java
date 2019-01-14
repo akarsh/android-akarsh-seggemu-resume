@@ -1,8 +1,12 @@
 package com.sakarsh.akarshseggemuresume;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -35,11 +39,28 @@ public class ProfilesActivity extends AppCompatActivity {
         String jsonString = bundle.getString("profiles");
         Gson gson = new Gson();
         Type listOfProfiles = new TypeToken<List<Profile>>() {}.getType();
-        List<Profile> profileArrayList = gson.fromJson(jsonString, listOfProfiles);
+        final List<Profile> profileArrayList = gson.fromJson(jsonString, listOfProfiles);
 //        Log.i("Profiles", "profiles array: "+profileArrayList);
 
         ProfilesListAdapter profilesListAdapter = new ProfilesListAdapter(this, profileArrayList, imagesOfProfilesArrays);
         listView = findViewById(R.id.listView);
         listView.setAdapter(profilesListAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                URL is being parsed and set to uri
+                Uri uri = Uri.parse(profileArrayList.get(position).getUrl());
+//                Intent is declared
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                parsed URL is set to the intent
+                intent.setData(uri);
+//                Using string resource to show the text.
+                String title = (String) getResources().getText(R.string.chooser_title);
+//                Create and start chooser to show list of all browser apps installed on the device
+                Intent chooser = Intent.createChooser(intent, title);
+                startActivity(chooser);
+            }
+        });
     }
 }

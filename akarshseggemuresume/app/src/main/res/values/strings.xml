@@ -20,4 +20,5 @@
     <string name="place_of_birth">Place of birth</string>
     <string name="english_resume" translatable="false">English resume</string>
     <string name="deutsch_lebenslauf" translatable="false">Deutsch lebenslauf</string>
+    <string name="chooser_title">Complete action using</string>
 </resources>
