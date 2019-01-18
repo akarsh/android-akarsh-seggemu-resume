@@ -7,6 +7,7 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
@@ -66,21 +67,10 @@ public class DownloadTask {
 //                            Log.i(TAG, downloadDirectory + " directory is created");
                             File outputFile = new File(externalStorage, downloadFileName);
 //                            Log.i(TAG, outputFile + " file path");
-                            if (!outputFile.exists()) {
-                                outputFile.createNewFile();
-//                                Log.i(TAG, downloadFileName + " file is created");
-                            }
-
-                            FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
-                            InputStream inputStream = httpsURLConnection.getInputStream();
-                            byte[] buffer = new byte[1024];
-                            int initialLength;
-                            while ((initialLength = inputStream.read(buffer)) != -1) {
-                                fileOutputStream.write(buffer, 0, initialLength);
-                            }
-//                            Log.i(TAG, downloadFileName + " file has been written");
-                            fileOutputStream.close();
-                            inputStream.close();
+                            downloadInExternalStorage(httpsURLConnection, outputFile);
+                        } else {
+                            File outputFile = new File(externalStorage, downloadFileName);
+                            downloadInExternalStorage(httpsURLConnection, outputFile);
                         }
                     } else {
                         downloadInInternalStorage(httpsURLConnection);
@@ -90,6 +80,25 @@ public class DownloadTask {
                 e.printStackTrace();
             }
             return null;
+        }
+
+        private void downloadInExternalStorage(HttpsURLConnection httpsURLConnection, File outputFile) throws IOException {
+            if (!outputFile.exists()) {
+                outputFile.createNewFile();
+//                Log.i(TAG, downloadFileName + " file is created");
+            }
+
+            FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
+            InputStream inputStream = httpsURLConnection.getInputStream();
+            byte[] buffer = new byte[1024];
+            int initialLength;
+            while ((initialLength = inputStream.read(buffer)) != -1) {
+                fileOutputStream.write(buffer, 0, initialLength);
+            }
+//            Log.i(TAG, downloadFileName + " file has been written");
+            fileOutputStream.close();
+            inputStream.close();
+            httpsURLConnection.disconnect();
         }
 
         private void downloadInInternalStorage(HttpsURLConnection httpsURLConnection) {
@@ -106,6 +115,7 @@ public class DownloadTask {
 //                Log.i(TAG, downloadFileName + " file has been written");
                 fileOutputStream.close();
                 inputStream.close();
+                httpsURLConnection.disconnect();
             } catch (Exception e) {
                 e.printStackTrace();
             }

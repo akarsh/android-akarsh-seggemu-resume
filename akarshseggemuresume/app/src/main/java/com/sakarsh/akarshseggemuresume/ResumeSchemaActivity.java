@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.os.Environment;
 import android.os.LocaleList;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -70,6 +72,8 @@ public class ResumeSchemaActivity extends AppCompatActivity {
     private String languageToLoad, resumeFileName;
     private Resume resume;
 
+    private static final String downloadDirectory = "ResumeJSONDownloads";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,109 +119,111 @@ public class ResumeSchemaActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (resume != null) {
 //                    setting the Locale for the new activity
-                LocaleHelper.setLocale( getApplicationContext(), languageToLoad);
+                    LocaleHelper.setLocale(getApplicationContext(), languageToLoad);
 //                0 means Contact
-                if (position == 0) {
-                    Intent intent = new Intent(view.getContext(), ContactActivity.class);
-                    intent.putExtra("name", resume.getBasics().getName());
-                    intent.putExtra("label", resume.getBasics().getLabel());
-                    intent.putExtra("email", resume.getBasics().getEmail());
-                    intent.putExtra("phone",resume.getBasics().getPhone());
-                    intent.putExtra("website", resume.getBasics().getWebsite());
-                    intent.putExtra("location", resume.getBasics().getLocation().getAddress());
-                    intent.putExtra("postalCode", resume.getBasics().getLocation().getPostalCode());
-                    intent.putExtra("region", resume.getBasics().getLocation().getRegion());
-                    intent.putExtra("city", resume.getBasics().getLocation().getCity());
-                    intent.putExtra("countryCode", resume.getBasics().getLocation().getCountryCode());
-                    intent.putExtra("imageURL", resume.getBasics().getPicture());
-                    startActivity(intent);
-                }
+                    if (position == 0) {
+                        Intent intent = new Intent(view.getContext(), ContactActivity.class);
+                        intent.putExtra("name", resume.getBasics().getName());
+                        intent.putExtra("label", resume.getBasics().getLabel());
+                        intent.putExtra("email", resume.getBasics().getEmail());
+                        intent.putExtra("phone", resume.getBasics().getPhone());
+                        intent.putExtra("website", resume.getBasics().getWebsite());
+                        intent.putExtra("location", resume.getBasics().getLocation().getAddress());
+                        intent.putExtra("postalCode", resume.getBasics().getLocation().getPostalCode());
+                        intent.putExtra("region", resume.getBasics().getLocation().getRegion());
+                        intent.putExtra("city", resume.getBasics().getLocation().getCity());
+                        intent.putExtra("countryCode", resume.getBasics().getLocation().getCountryCode());
+                        intent.putExtra("imageURL", resume.getBasics().getPicture());
+                        startActivity(intent);
+                    }
 //                1 means Info
-                if (position == 1) {
-                    Intent intent = new Intent(view.getContext(), InfoActivity.class);
-                    intent.putExtra("nationality", resume.getBasics().getInfo().getNationality());
-                    intent.putExtra("workPermit", resume.getBasics().getInfo().getWorkPermit());
-                    intent.putExtra("dateOfBirth", resume.getBasics().getInfo().getDateOfBirth());
-                    intent.putExtra("placeOfBirth", resume.getBasics().getInfo().getPlaceOfBirth());
+                    if (position == 1) {
+                        Intent intent = new Intent(view.getContext(), InfoActivity.class);
+                        intent.putExtra("nationality", resume.getBasics().getInfo().getNationality());
+                        intent.putExtra("workPermit", resume.getBasics().getInfo().getWorkPermit());
+                        intent.putExtra("dateOfBirth", resume.getBasics().getInfo().getDateOfBirth());
+                        intent.putExtra("placeOfBirth", resume.getBasics().getInfo().getPlaceOfBirth());
 
-                    startActivity(intent);
-                }
+                        startActivity(intent);
+                    }
 //                2 means Summary
-                if (position == 2) {
-                    Intent intent = new Intent(view.getContext(), SummaryActivity.class);
-                    intent.putExtra("summary", resume.getBasics().getSummary());
-                    startActivity(intent);
-                }
+                    if (position == 2) {
+                        Intent intent = new Intent(view.getContext(), SummaryActivity.class);
+                        intent.putExtra("summary", resume.getBasics().getSummary());
+                        startActivity(intent);
+                    }
 //                3 means Profiles
-                if (position == 3) {
-                    Intent intent = new Intent(view.getContext(), ProfilesActivity.class);
-                    String JSONString = gson.toJson(resume.getBasics().getProfiles());
-                    intent.putExtra("profiles", JSONString);
-                    startActivity(intent);
-                }
+                    if (position == 3) {
+                        Intent intent = new Intent(view.getContext(), ProfilesActivity.class);
+                        String JSONString = gson.toJson(resume.getBasics().getProfiles());
+                        intent.putExtra("profiles", JSONString);
+                        startActivity(intent);
+                    }
 //                4 means Skills
-                if (position == 4) {
-                    Intent intent = new Intent(view.getContext(), SkillsActivity.class);
-                    String JSONString = gson.toJson(resume.getSkills());
-                    intent.putExtra("skills", JSONString);
-                    startActivity(intent);
-                }
+                    if (position == 4) {
+                        Intent intent = new Intent(view.getContext(), SkillsActivity.class);
+                        String JSONString = gson.toJson(resume.getSkills());
+                        intent.putExtra("skills", JSONString);
+                        startActivity(intent);
+                    }
 //                5 means Languages
-                if (position == 5) {
-                    Intent intent = new Intent(view.getContext(), LanguagesActivity.class);
-                    String JSONString = gson.toJson(resume.getLanguages());
-                    intent.putExtra("languages", JSONString);
-                    startActivity(intent);
-                }
+                    if (position == 5) {
+                        Intent intent = new Intent(view.getContext(), LanguagesActivity.class);
+                        String JSONString = gson.toJson(resume.getLanguages());
+                        intent.putExtra("languages", JSONString);
+                        startActivity(intent);
+                    }
 //                6 means Education
-                if (position == 6) {
-                    Intent intent = new Intent(view.getContext(), EducationActivity.class);
-                    String JSONString = gson.toJson(resume.getEducation());
-                    intent.putExtra("education", JSONString);
-                    startActivity(intent);
-                }
+                    if (position == 6) {
+                        Intent intent = new Intent(view.getContext(), EducationActivity.class);
+                        String JSONString = gson.toJson(resume.getEducation());
+                        intent.putExtra("education", JSONString);
+                        startActivity(intent);
+                    }
 //                7 means Experience
-                if (position == 7) {
-                    Intent intent = new Intent(view.getContext(), ExperienceActivity.class);
-                    String JSONString = gson.toJson(resume.getWork());
-                    intent.putExtra("experience", JSONString);
-                    startActivity(intent);
-                }
+                    if (position == 7) {
+                        Intent intent = new Intent(view.getContext(), ExperienceActivity.class);
+                        String JSONString = gson.toJson(resume.getWork());
+                        intent.putExtra("experience", JSONString);
+                        startActivity(intent);
+                    }
 //                8 means Volunteer
-                if (position == 8) {
-                    Intent intent = new Intent(view.getContext(), VolunteerActivity.class);
-                    String JSONString = gson.toJson(resume.getVolunteer());
-                    intent.putExtra("volunteer", JSONString);
-                    startActivity(intent);
-                }
+                    if (position == 8) {
+                        Intent intent = new Intent(view.getContext(), VolunteerActivity.class);
+                        String JSONString = gson.toJson(resume.getVolunteer());
+                        intent.putExtra("volunteer", JSONString);
+                        startActivity(intent);
+                    }
 //                9 means Awards
-                if (position == 9) {
-                    Intent intent = new Intent(view.getContext(), AwardsActivity.class);
-                    String JSONString = gson.toJson(resume.getAwards());
-                    intent.putExtra("awards", JSONString);
-                    startActivity(intent);
-                }
+                    if (position == 9) {
+                        Intent intent = new Intent(view.getContext(), AwardsActivity.class);
+                        String JSONString = gson.toJson(resume.getAwards());
+                        intent.putExtra("awards", JSONString);
+                        startActivity(intent);
+                    }
 //                10 means Publications
-                if (position == 10) {
-                    Intent intent = new Intent(view.getContext(), PublicationsActivity.class);
-                    String JSONString = gson.toJson(resume.getPublications());
-                    intent.putExtra("publications", JSONString);
-                    startActivity(intent);
-                }
+                    if (position == 10) {
+                        Intent intent = new Intent(view.getContext(), PublicationsActivity.class);
+                        String JSONString = gson.toJson(resume.getPublications());
+                        intent.putExtra("publications", JSONString);
+                        startActivity(intent);
+                    }
 //                11 means Interests
-                if (position == 11) {
-                    Intent intent = new Intent(view.getContext(), InterestsActivity.class);
-                    String JSONString = gson.toJson(resume.getInterests());
-                    intent.putExtra("interests", JSONString);
-                    startActivity(intent);
-                }
+                    if (position == 11) {
+                        Intent intent = new Intent(view.getContext(), InterestsActivity.class);
+                        String JSONString = gson.toJson(resume.getInterests());
+                        intent.putExtra("interests", JSONString);
+                        startActivity(intent);
+                    }
 //                12 means References
-                if (position == 12) {
-                    Intent intent = new Intent(view.getContext(), ReferencesActivity.class);
-                    String JSONString = gson.toJson(resume.getReferences());
-                    intent.putExtra("references", JSONString);
-                    startActivity(intent);
+                    if (position == 12) {
+                        Intent intent = new Intent(view.getContext(), ReferencesActivity.class);
+                        String JSONString = gson.toJson(resume.getReferences());
+                        intent.putExtra("references", JSONString);
+                        startActivity(intent);
+                    }
                 }
             }
         });
@@ -254,7 +260,14 @@ public class ResumeSchemaActivity extends AppCompatActivity {
     }
 
     private void openFileFromExternalStorage() {
-        // TODO: add how to open file from external storage
+        try {
+            File externalStorage = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + downloadDirectory);
+            File filePath = new File(externalStorage, resumeFileName);
+            FileInputStream fileInputStream = new FileInputStream(filePath);
+            readFile(fileInputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void openFileFromInternalStorage() {

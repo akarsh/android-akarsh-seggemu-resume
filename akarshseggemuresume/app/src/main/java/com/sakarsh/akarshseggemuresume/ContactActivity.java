@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileInputStream;
 
 public class ContactActivity extends AppCompatActivity {
@@ -22,6 +24,7 @@ public class ContactActivity extends AppCompatActivity {
     private String imageURL;
 
     private static final String imageFileName = "profile.jpg";
+    private static final String downloadDirectory = "ResumeJSONDownloads";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +104,14 @@ public class ContactActivity extends AppCompatActivity {
     }
 
     private void openFileFromExternalStorage() {
-        // TODO: add how to open file from external storage
+        try {
+            File externalStorage = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + downloadDirectory);
+            File filePath = new File(externalStorage, imageFileName);
+            FileInputStream fileInputStream = new FileInputStream(filePath);
+            readFile(fileInputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void readFile(FileInputStream fileInputStream) {
