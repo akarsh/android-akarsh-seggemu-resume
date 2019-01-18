@@ -55,19 +55,19 @@ public class DownloadImage {
                         File externalStorage = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + downloadDirectory);
                         if (!externalStorage.exists()) {
                             externalStorage.mkdirs();
-                            Log.i(TAG, downloadDirectory + " directory is created");
+//                            Log.i(TAG, downloadDirectory + " directory is created");
                             File outputFile = new File(externalStorage, downloadFileName);
-                            Log.i(TAG, outputFile + " file path");
+//                            Log.i(TAG, outputFile + " file path");
                             if (!outputFile.exists()) {
                                 outputFile.createNewFile();
-                                Log.i(TAG, downloadFileName + " file is created");
+//                                Log.i(TAG, downloadFileName + " file is created");
                             }
 
                             FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
                             InputStream inputStream = httpsURLConnection.getInputStream();
                             Bitmap bitmap = null;
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
-                            Log.i(TAG, downloadFileName + " file has been written");
+//                            Log.i(TAG, downloadFileName + " file has been written");
                             fileOutputStream.close();
                             inputStream.close();
                         }
@@ -89,7 +89,7 @@ public class DownloadImage {
                 InputStream inputStream = httpsURLConnection.getInputStream();
                 bitmap = BitmapFactory.decodeStream(inputStream);
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
-                Log.i(TAG, downloadFileName + " file has been written");
+//                Log.i(TAG, downloadFileName + " file has been written");
                 fileOutputStream.close();
                 inputStream.close();
             } catch (Exception e) {

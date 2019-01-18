@@ -63,12 +63,12 @@ public class DownloadTask {
                         File externalStorage = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/" + downloadDirectory);
                         if (!externalStorage.exists()) {
                             externalStorage.mkdirs();
-                            Log.i(TAG, downloadDirectory + " directory is created");
+//                            Log.i(TAG, downloadDirectory + " directory is created");
                             File outputFile = new File(externalStorage, downloadFileName);
-                            Log.i(TAG, outputFile + " file path");
+//                            Log.i(TAG, outputFile + " file path");
                             if (!outputFile.exists()) {
                                 outputFile.createNewFile();
-                                Log.i(TAG, downloadFileName + " file is created");
+//                                Log.i(TAG, downloadFileName + " file is created");
                             }
 
                             FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
@@ -78,7 +78,7 @@ public class DownloadTask {
                             while ((initialLength = inputStream.read(buffer)) != -1) {
                                 fileOutputStream.write(buffer, 0, initialLength);
                             }
-                            Log.i(TAG, downloadFileName + " file has been written");
+//                            Log.i(TAG, downloadFileName + " file has been written");
                             fileOutputStream.close();
                             inputStream.close();
                         }
@@ -103,7 +103,7 @@ public class DownloadTask {
                 while ((initialLength = inputStream.read(buffer)) != -1) {
                     fileOutputStream.write(buffer, 0, initialLength);
                 }
-                Log.i(TAG, downloadFileName + " file has been written");
+//                Log.i(TAG, downloadFileName + " file has been written");
                 fileOutputStream.close();
                 inputStream.close();
             } catch (Exception e) {

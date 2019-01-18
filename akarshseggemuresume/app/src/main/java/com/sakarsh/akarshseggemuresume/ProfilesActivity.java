@@ -1,10 +1,12 @@
 package com.sakarsh.akarshseggemuresume;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -62,5 +64,27 @@ public class ProfilesActivity extends AppCompatActivity {
                 startActivity(chooser);
             }
         });
+
+        //        activates the back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //            setting the title of the action bar
+        getSupportActionBar().setTitle(R.string.profiles);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+//            handles the click for back button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -1,7 +1,9 @@
 package com.sakarsh.akarshseggemuresume;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -28,5 +30,27 @@ public class AwardsActivity extends AppCompatActivity {
         AwardsListAdapter awardsListAdapter = new AwardsListAdapter(this, awardsArrayList);
         listView = findViewById(R.id.listView);
         listView.setAdapter(awardsListAdapter);
+
+        //        activates the back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //            setting the title of the action bar
+        getSupportActionBar().setTitle(R.string.awards);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+//            handles the click for back button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

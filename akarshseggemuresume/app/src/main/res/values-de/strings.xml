@@ -19,4 +19,5 @@
     <string name="work_permit">Arbeitserlaubnis</string>
     <string name="date_of_birth">Geburtsdatum</string>
     <string name="place_of_birth">Geburtsort</string>
+    <string name="chooser_title">Aktion ausführen mit</string>
 </resources>

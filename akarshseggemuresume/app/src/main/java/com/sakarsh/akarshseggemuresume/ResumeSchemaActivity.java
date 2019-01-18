@@ -14,6 +14,7 @@ import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -33,6 +34,7 @@ import java.util.Locale;
 
 public class ResumeSchemaActivity extends AppCompatActivity {
 
+    private static final String TAG = "ResumeSchema";
     Integer[] resumeSchemaArrays = new Integer[] {
             R.string.contact,
             R.string.info,
@@ -63,15 +65,10 @@ public class ResumeSchemaActivity extends AppCompatActivity {
             R.drawable.black_heart_suit_2665,
             R.drawable.memo_1f4dd
     };
-
     ListView listView;
-
-    private static final String TAG = "ResumeSchema";
-    private String languageToLoad, resumeFileName;
-
-    private Resume resume;
-
     Gson gson = new Gson();
+    private String languageToLoad, resumeFileName;
+    private Resume resume;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,11 +84,26 @@ public class ResumeSchemaActivity extends AppCompatActivity {
         setResumeFileToChosenLanguage();
 
         setContentsForListView();
+
+//        activates the back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+//            handles the click for back button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void setContentsForListView() {
@@ -103,6 +115,8 @@ public class ResumeSchemaActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                    setting the Locale for the new activity
+                LocaleHelper.setLocale( getApplicationContext(), languageToLoad);
 //                0 means Contact
                 if (position == 0) {
                     Intent intent = new Intent(view.getContext(), ContactActivity.class);
@@ -126,7 +140,7 @@ public class ResumeSchemaActivity extends AppCompatActivity {
                     intent.putExtra("workPermit", resume.getBasics().getInfo().getWorkPermit());
                     intent.putExtra("dateOfBirth", resume.getBasics().getInfo().getDateOfBirth());
                     intent.putExtra("placeOfBirth", resume.getBasics().getInfo().getPlaceOfBirth());
-                    LocaleHelper.setLocale( getApplicationContext(), languageToLoad);
+
                     startActivity(intent);
                 }
 //                2 means Summary
@@ -211,11 +225,15 @@ public class ResumeSchemaActivity extends AppCompatActivity {
 
     private void setResumeFileToChosenLanguage() {
         if (languageToLoad.equals("en")) {
+//            setting the title of the action bar to the resume selected
+            getSupportActionBar().setTitle(R.string.english_resume);
             resumeFileName = "EnglishResume.json";
 //            Log.i(TAG, "resume file name: "+resumeFileName);
             openFileFromStorage();
         } else if (languageToLoad.equals("de")) {
-            Log.i(TAG, "Language: "+languageToLoad);
+//            setting the title of the action bar to the resume selected
+            getSupportActionBar().setTitle(R.string.deutsch_lebenslauf);
+//            Log.i(TAG, "Language: "+languageToLoad);
             resumeFileName = "DeutschResume.json";
 //            Log.i(TAG, "resume file name: "+resumeFileName);
             openFileFromStorage();
@@ -232,7 +250,7 @@ public class ResumeSchemaActivity extends AppCompatActivity {
             } else {
                 openFileFromInternalStorage();
             }
-            }
+        }
     }
 
     private void openFileFromExternalStorage() {

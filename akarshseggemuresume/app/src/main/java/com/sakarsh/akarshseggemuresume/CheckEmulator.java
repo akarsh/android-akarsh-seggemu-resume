@@ -15,9 +15,7 @@ public class CheckEmulator {
         deviceInfo.append("Build.DEVICE " + Build.DEVICE + "\n");
         String info = deviceInfo.toString();
 
-
-        Log.i("CheckEmulator", info);
-
+//        Log.i("CheckEmulator", info);
 
         Boolean isvm = false;
         if (
