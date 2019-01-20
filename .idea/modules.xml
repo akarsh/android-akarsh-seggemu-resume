@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/android-akarsh-seggemu-resume.iml" filepath="$PROJECT_DIR$/.idea/android-akarsh-seggemu-resume.iml" />
+      <module fileurl="file://$PROJECT_DIR$/akarshseggemuresume.iml" filepath="$PROJECT_DIR$/akarshseggemuresume.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>
