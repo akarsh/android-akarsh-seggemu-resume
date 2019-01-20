@@ -1,6 +1,6 @@
-<img align="left" width="80" height="80" src="https://raw.githubusercontent.com/akarsh/android-akarsh-seggemu-resume/master/akarshseggemuresume/app/src/main/ic_launcher-web.png" alt="Resume application project app icon">
+<img align="left" width="80" height="80" src="https://raw.githubusercontent.com/akarsh/android-akarsh-seggemu-resume/master/akarshseggemuresume/app/src/main/ic_launcher-web.png" alt="Android resume application project app icon">
 
-# Resume application project
+# Android - Resume application project
 [![Java](https://img.shields.io/badge/java-1.8-blue.svg)](https://developer.android.com/studio/write/java8-support)
 [![Android Studio](https://img.shields.io/badge/android%20studio-3.2.1-green.svg)](https://developer.android.com/studio/)
 
@@ -10,6 +10,8 @@ The resume is maintained in a JSON format following resume JSON structure.
 - [Features](#features)
 - [Requirements](#requirements)
 - [License](#license)
+
+<img height="480" src="Images/demoOfAndroidApp.gif" alt="demo of Android resume application project">
 
 ## Features
 
