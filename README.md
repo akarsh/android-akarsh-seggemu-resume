@@ -9,7 +9,8 @@
 This project is developed to show the resume in Android.
 The resume is maintained in a JSON format following resume JSON structure.
 
-- [Android - Resume application project](#android---resume-application-project)
+## Table of Contents
+
   - [Features](#features)
   - [Requirements](#requirements)
   - [License](#license)
@@ -25,6 +26,9 @@ The resume is maintained in a JSON format following resume JSON structure.
 - [x] Store the downloaded remote JSON file in the application.
 - [x] Read the stored JSON file in the application.
 - [x] Pass data from resume schema layout to other layouts.
+- [x] Translate the contents in the application based on the resume language selected by the user.
+- [x] Application adapts to different screen sizes.
+- [x] Continuous Integration (Travis-CI) to test the application.
 
 ## Requirements
 
