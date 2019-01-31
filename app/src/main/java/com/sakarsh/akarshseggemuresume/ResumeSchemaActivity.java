@@ -22,7 +22,6 @@ import java.io.Reader;
 
 public class ResumeSchemaActivity extends AppCompatActivity {
 
-    private static final String TAG = "ResumeSchema";
     Integer[] resumeSchemaArrays = new Integer[] {
             R.string.contact,
             R.string.info,
@@ -217,20 +216,13 @@ public class ResumeSchemaActivity extends AppCompatActivity {
 
     private void setResumeFileToChosenLanguage() {
         if (languageToLoad.equals("en")) {
-//            setting the title of the action bar to the resume selected
-            getSupportActionBar().setTitle(R.string.english_resume);
             resumeFileName = "EnglishResume.json";
-//            Log.i(TAG, "resume file name: "+resumeFileName);
-            openFileFromStorage();
         } else if (languageToLoad.equals("de")) {
-//            setting the title of the action bar to the resume selected
-            getSupportActionBar().setTitle(R.string.deutsch_lebenslauf);
-//            Log.i(TAG, "Language: "+languageToLoad);
             resumeFileName = "DeutschResume.json";
-//            Log.i(TAG, "resume file name: "+resumeFileName);
-            openFileFromStorage();
         }
-
+//            setting the title of the action bar to the resume selected
+        getSupportActionBar().setTitle(R.string.resume_title);
+        openFileFromStorage();
     }
 
     private void openFileFromStorage() {
