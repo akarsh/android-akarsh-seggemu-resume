@@ -92,20 +92,9 @@ public class DownloadTask {
             }
 
             FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
-            InputStream inputStream = httpsURLConnection.getInputStream();
-            Bitmap bitmap = null;
             try {
-                if (downloadFileName.equals("EnglishResume.json") || downloadFileName.equals("DeutschResume.json")) {
-                    byte[] buffer = new byte[1024];
-                    int initialLength;
-                    while ((initialLength = inputStream.read(buffer)) != -1) {
-                        fileOutputStream.write(buffer, 0, initialLength);
-                    }
-                } else if (downloadFileName.equals("profile.jpg")) {
-                    bitmap = BitmapFactory.decodeStream(inputStream);
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
-                }
-
+                InputStream inputStream = httpsURLConnection.getInputStream();
+                downloadFile(fileOutputStream, inputStream);
                 fileOutputStream.close();
                 inputStream.close();
                 httpsURLConnection.disconnect();
@@ -116,20 +105,10 @@ public class DownloadTask {
 
         private void downloadInInternalStorage(HttpsURLConnection httpsURLConnection) {
             FileOutputStream fileOutputStream;
-            Bitmap bitmap = null;
             try {
                 fileOutputStream = context.openFileOutput(downloadFileName, Context.MODE_PRIVATE);
                 InputStream inputStream = httpsURLConnection.getInputStream();
-                if (downloadFileName.equals("EnglishResume.json") || downloadFileName.equals("DeutschResume.json")) {
-                    byte[] buffer = new byte[1024];
-                    int initialLength;
-                    while ((initialLength = inputStream.read(buffer)) != -1) {
-                        fileOutputStream.write(buffer, 0, initialLength);
-                    }
-                } else if (downloadFileName.equals("profile.jpg")) {
-                    bitmap = BitmapFactory.decodeStream(inputStream);
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
-                }
+                downloadFile(fileOutputStream, inputStream);
                 fileOutputStream.close();
                 inputStream.close();
                 httpsURLConnection.disconnect();
@@ -138,6 +117,18 @@ public class DownloadTask {
             }
         }
 
-
+        private void downloadFile(FileOutputStream fileOutputStream, InputStream inputStream) throws IOException {
+            Bitmap bitmap = null;
+            if (downloadFileName.equals("EnglishResume.json") || downloadFileName.equals("DeutschResume.json")) {
+                byte[] buffer = new byte[1024];
+                int initialLength;
+                while ((initialLength = inputStream.read(buffer)) != -1) {
+                    fileOutputStream.write(buffer, 0, initialLength);
+                }
+            } else if (downloadFileName.equals("profile.jpg")) {
+                bitmap = BitmapFactory.decodeStream(inputStream);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
+            }
+        }
     }
 }
