@@ -1,7 +1,6 @@
 package com.sakarsh.akarshseggemuresume;
 
 import android.os.Environment;
-import android.util.Log;
 
 public class CheckExternalStorage {
 //    private static final String TAG = "CheckExternalStorage";
