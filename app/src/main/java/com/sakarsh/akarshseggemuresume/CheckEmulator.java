@@ -1,7 +1,6 @@
 package com.sakarsh.akarshseggemuresume;
 
 import android.os.Build;
-import android.util.Log;
 
 public class CheckEmulator {
     public boolean isEmulator() {
@@ -13,8 +12,8 @@ public class CheckEmulator {
         deviceInfo.append("Build.MODEL " + Build.MODEL + "\n");
         deviceInfo.append("Build.BRAND " + Build.BRAND + "\n");
         deviceInfo.append("Build.DEVICE " + Build.DEVICE + "\n");
-        String info = deviceInfo.toString();
-
+        /* The log info tag prints out the details of the device in the Logcat. */
+//        String info = deviceInfo.toString();
 //        Log.i("CheckEmulator", info);
 
         Boolean isvm = false;
@@ -28,10 +27,9 @@ public class CheckEmulator {
                         Build.MANUFACTURER.contains("Genymotion") ||
                         Build.MODEL.contains("Emulator") ||
                         Build.MODEL.contains("Android SDK built for x86")
-                ) {
+        ) {
             isvm = true;
         }
-
 
         if (Build.BRAND.contains("generic") && Build.DEVICE.contains("generic")) {
             isvm = true;
