@@ -1,6 +1,8 @@
 package com.sakarsh.akarshseggemuresume;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
@@ -30,6 +32,8 @@ public class DownloadTask {
         if (downloadFileName.equals("de/resume.json")) this.downloadFileName = "DeutschResume.json";
         else if (downloadFileName.equals("en/resume.json"))
             this.downloadFileName = "EnglishResume.json";
+        else
+            this.downloadFileName = "profile.jpg";
 
         // execute downloading task
         new DownloadingTask().execute();
@@ -85,34 +89,47 @@ public class DownloadTask {
         private void downloadInExternalStorage(HttpsURLConnection httpsURLConnection, File outputFile) throws IOException {
             if (!outputFile.exists()) {
                 outputFile.createNewFile();
-//                Log.i(TAG, downloadFileName + " file is created");
             }
 
             FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
             InputStream inputStream = httpsURLConnection.getInputStream();
-            byte[] buffer = new byte[1024];
-            int initialLength;
-            while ((initialLength = inputStream.read(buffer)) != -1) {
-                fileOutputStream.write(buffer, 0, initialLength);
+            Bitmap bitmap = null;
+            try {
+                if (downloadFileName.equals("EnglishResume.json") || downloadFileName.equals("DeutschResume.json")) {
+                    byte[] buffer = new byte[1024];
+                    int initialLength;
+                    while ((initialLength = inputStream.read(buffer)) != -1) {
+                        fileOutputStream.write(buffer, 0, initialLength);
+                    }
+                } else if (downloadFileName.equals("profile.jpg")) {
+                    bitmap = BitmapFactory.decodeStream(inputStream);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
+                }
+
+                fileOutputStream.close();
+                inputStream.close();
+                httpsURLConnection.disconnect();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-//            Log.i(TAG, downloadFileName + " file has been written");
-            fileOutputStream.close();
-            inputStream.close();
-            httpsURLConnection.disconnect();
         }
 
         private void downloadInInternalStorage(HttpsURLConnection httpsURLConnection) {
             FileOutputStream fileOutputStream;
-
+            Bitmap bitmap = null;
             try {
                 fileOutputStream = context.openFileOutput(downloadFileName, Context.MODE_PRIVATE);
                 InputStream inputStream = httpsURLConnection.getInputStream();
-                byte[] buffer = new byte[1024];
-                int initialLength;
-                while ((initialLength = inputStream.read(buffer)) != -1) {
-                    fileOutputStream.write(buffer, 0, initialLength);
+                if (downloadFileName.equals("EnglishResume.json") || downloadFileName.equals("DeutschResume.json")) {
+                    byte[] buffer = new byte[1024];
+                    int initialLength;
+                    while ((initialLength = inputStream.read(buffer)) != -1) {
+                        fileOutputStream.write(buffer, 0, initialLength);
+                    }
+                } else if (downloadFileName.equals("profile.jpg")) {
+                    bitmap = BitmapFactory.decodeStream(inputStream);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
                 }
-//                Log.i(TAG, downloadFileName + " file has been written");
                 fileOutputStream.close();
                 inputStream.close();
                 httpsURLConnection.disconnect();
