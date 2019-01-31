@@ -20,4 +20,5 @@
     <string name="date_of_birth">Geburtsdatum</string>
     <string name="place_of_birth">Geburtsort</string>
     <string name="chooser_title">Aktion ausführen mit</string>
+    <string name="resume_title">Deutsch lebenslauf</string>
 </resources>
