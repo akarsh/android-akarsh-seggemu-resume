@@ -287,7 +287,7 @@ public class ResumeSchemaActivity extends AppCompatActivity {
 
     public void downloadImageFromURL() {
         if (checkInternetConnection()) {
-            new DownloadImage(ResumeSchemaActivity.this, resume.getBasics().getPicture());
+            new DownloadTask(ResumeSchemaActivity.this, resume.getBasics().getPicture());
         } else {
             Toast.makeText(ResumeSchemaActivity.this, "There is no internet connection", Toast.LENGTH_SHORT).show();
         }
