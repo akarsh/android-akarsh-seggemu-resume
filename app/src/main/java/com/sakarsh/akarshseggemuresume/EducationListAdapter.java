@@ -61,12 +61,6 @@ public class EducationListAdapter extends ArrayAdapter<Education> {
             textViewGPA.setVisibility(View.GONE);
         }
 
-
-
-
-
-
-
         return rowView;
     }
 }

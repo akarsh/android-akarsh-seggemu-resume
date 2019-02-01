@@ -54,7 +54,6 @@ public class ContactActivity extends AppCompatActivity {
         imageURL = getIntent().getStringExtra("imageURL");
 
         openFileFromStorage();
-
         //        activates the back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar

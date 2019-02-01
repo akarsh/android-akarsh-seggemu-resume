@@ -59,7 +59,6 @@ public class PublicationsListAdapter extends ArrayAdapter<Publication> {
             textViewSummary.setVisibility(View.GONE);
         }
 
-
         return rowView;
     }
 }
