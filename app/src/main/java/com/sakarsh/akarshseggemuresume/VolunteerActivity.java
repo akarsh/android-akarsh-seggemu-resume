@@ -12,7 +12,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class VolunteerActivity extends AppCompatActivity {
+public class VolunteerActivity extends BaseActivity {
 
     ListView listView;
 
@@ -36,22 +36,4 @@ public class VolunteerActivity extends AppCompatActivity {
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.volunteer);
     }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LocaleHelper.onAttach(base));
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-//            handles the click for back button
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
 }

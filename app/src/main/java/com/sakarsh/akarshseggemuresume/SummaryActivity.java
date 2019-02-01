@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-public class SummaryActivity extends AppCompatActivity {
+public class SummaryActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,22 +26,5 @@ public class SummaryActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.summary);
-    }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LocaleHelper.onAttach(base));
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-//            handles the click for back button
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 }

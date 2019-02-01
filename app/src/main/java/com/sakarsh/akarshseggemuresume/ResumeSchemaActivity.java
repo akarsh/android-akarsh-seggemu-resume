@@ -20,7 +20,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
-public class ResumeSchemaActivity extends AppCompatActivity {
+public class ResumeSchemaActivity extends BaseActivity {
 
     Integer[] resumeSchemaArrays = new Integer[] {
             R.string.contact,
@@ -76,23 +76,6 @@ public class ResumeSchemaActivity extends AppCompatActivity {
 
 //        activates the back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LocaleHelper.onAttach(base));
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-//            handles the click for back button
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     private void setContentsForListView() {

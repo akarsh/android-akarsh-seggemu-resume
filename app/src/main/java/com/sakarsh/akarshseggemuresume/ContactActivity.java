@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.io.File;
 import java.io.FileInputStream;
 
-public class ContactActivity extends AppCompatActivity {
+public class ContactActivity extends BaseActivity {
 
     ImageView imageView;
 
@@ -58,23 +58,6 @@ public class ContactActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.contact);
-    }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LocaleHelper.onAttach(base));
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-//            handles the click for back button
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     private void openFileFromStorage() {
