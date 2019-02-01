@@ -68,14 +68,10 @@ public class ResumeSchemaActivity extends BaseActivity {
         languageToLoad = getIntent().getStringExtra("languageToLoad");
 //        Log.i(TAG, "Language: "+languageToLoad);
 //        Log.i(TAG, "Locale default language " + Locale.getDefault().getLanguage());
-
 //        set the resume file to chosen language
         setResumeFileToChosenLanguage();
 
         setContentsForListView();
-
-//        activates the back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setContentsForListView() {

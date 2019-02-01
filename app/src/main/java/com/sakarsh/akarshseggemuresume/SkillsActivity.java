@@ -30,9 +30,6 @@ public class SkillsActivity extends BaseActivity {
         SkillsListAdapter skillsListAdapter = new SkillsListAdapter(this, skillsArrayList);
         listView = findViewById(R.id.listView);
         listView.setAdapter(skillsListAdapter);
-
-        //        activates the back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.skills);
     }

@@ -30,9 +30,6 @@ public class LanguagesActivity extends BaseActivity {
         LanguagesListAdapter languagesListAdapter = new LanguagesListAdapter(this, languagesArrayList);
         listView = findViewById(R.id.listView);
         listView.setAdapter(languagesListAdapter);
-
-        //        activates the back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.languages);
     }

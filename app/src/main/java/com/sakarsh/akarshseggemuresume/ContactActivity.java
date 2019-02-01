@@ -54,8 +54,6 @@ public class ContactActivity extends BaseActivity {
         imageURL = getIntent().getStringExtra("imageURL");
 
         openFileFromStorage();
-        //        activates the back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.contact);
     }

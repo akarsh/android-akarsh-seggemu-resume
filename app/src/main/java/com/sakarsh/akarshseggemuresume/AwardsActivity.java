@@ -30,9 +30,6 @@ public class AwardsActivity extends BaseActivity {
         AwardsListAdapter awardsListAdapter = new AwardsListAdapter(this, awardsArrayList);
         listView = findViewById(R.id.listView);
         listView.setAdapter(awardsListAdapter);
-
-        //        activates the back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.awards);
     }

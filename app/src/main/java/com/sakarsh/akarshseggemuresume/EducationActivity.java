@@ -30,9 +30,6 @@ public class EducationActivity extends BaseActivity {
         EducationListAdapter educationListAdapter = new EducationListAdapter(this, educationArrayList);
         listView = findViewById(R.id.listView);
         listView.setAdapter(educationListAdapter);
-
-        //        activates the back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.education);
     }

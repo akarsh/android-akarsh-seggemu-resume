@@ -30,9 +30,6 @@ public class ReferencesActivity extends BaseActivity {
         ReferencesListAdapter referencesListAdapter = new ReferencesListAdapter(this, referencesArrayList);
         listView = findViewById(R.id.listView);
         listView.setAdapter(referencesListAdapter);
-
-        //        activates the back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.references);
     }

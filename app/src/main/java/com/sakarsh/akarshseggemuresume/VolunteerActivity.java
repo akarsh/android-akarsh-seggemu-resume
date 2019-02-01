@@ -30,9 +30,6 @@ public class VolunteerActivity extends BaseActivity {
         VolunteerListAdapter volunteerListAdapter = new VolunteerListAdapter(this, volunteerArrayList);
         listView = findViewById(R.id.listView);
         listView.setAdapter(volunteerListAdapter);
-
-        //        activates the back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.volunteer);
     }

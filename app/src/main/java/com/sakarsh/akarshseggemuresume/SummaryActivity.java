@@ -21,9 +21,6 @@ public class SummaryActivity extends BaseActivity {
         } else {
             textViewSummary.setVisibility(View.GONE);
         }
-
-        //        activates the back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.summary);
     }

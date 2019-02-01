@@ -30,9 +30,6 @@ public class InterestsActivity extends BaseActivity {
         InterestsListAdapter interestsListAdapter = new InterestsListAdapter(this, interestArrayList);
         listView = findViewById(R.id.listView);
         listView.setAdapter(interestsListAdapter);
-
-        //        activates the back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.interests);
     }

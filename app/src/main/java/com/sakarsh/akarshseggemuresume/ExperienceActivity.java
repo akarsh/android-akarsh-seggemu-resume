@@ -30,9 +30,6 @@ public class ExperienceActivity extends BaseActivity {
         ExperienceListAdapter experienceListAdapter = new ExperienceListAdapter(this, experienceArrayList);
         listView = findViewById(R.id.listView);
         listView.setAdapter(experienceListAdapter);
-
-        //        activates the back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.experience);
     }

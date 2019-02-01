@@ -30,9 +30,6 @@ public class PublicationsActivity extends BaseActivity {
         PublicationsListAdapter publicationsListAdapter = new PublicationsListAdapter(this, publicationArrayList);
         listView = findViewById(R.id.listView);
         listView.setAdapter(publicationsListAdapter);
-
-        //        activates the back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.profiles);
     }

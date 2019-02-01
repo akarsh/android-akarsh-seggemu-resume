@@ -39,9 +39,6 @@ public class InfoActivity extends BaseActivity {
         } else {
             textViewPlaceOfBirth.setVisibility(View.GONE);
         }
-
-//        activates the back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.info);
 //        Log.i("Info", "Locale: "+getResources().getConfiguration().locale);

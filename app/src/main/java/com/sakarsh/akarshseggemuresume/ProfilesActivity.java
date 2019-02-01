@@ -61,9 +61,6 @@ public class ProfilesActivity extends BaseActivity {
                 startActivity(chooser);
             }
         });
-
-        //        activates the back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.profiles);
     }
