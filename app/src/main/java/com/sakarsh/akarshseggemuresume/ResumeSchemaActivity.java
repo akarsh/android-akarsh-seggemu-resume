@@ -215,12 +215,8 @@ public class ResumeSchemaActivity extends AppCompatActivity {
     }
 
     private void setResumeFileToChosenLanguage() {
-        if (languageToLoad.equals("en")) {
-            resumeFileName = "EnglishResume.json";
-        } else if (languageToLoad.equals("de")) {
-            resumeFileName = "DeutschResume.json";
-        }
-//            setting the title of the action bar to the resume selected
+//        setting the title of the action bar to the resume selected
+        resumeFileName = (languageToLoad.equals("en")) ? "EnglishResume.json" : "DeutschResume.json" ;
         getSupportActionBar().setTitle(R.string.resume_title);
         openFileFromStorage();
     }
