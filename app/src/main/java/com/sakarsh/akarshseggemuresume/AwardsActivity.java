@@ -12,7 +12,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class AwardsActivity extends AppCompatActivity {
+public class AwardsActivity extends BaseActivity {
 
     ListView listView;
 
@@ -30,27 +30,7 @@ public class AwardsActivity extends AppCompatActivity {
         AwardsListAdapter awardsListAdapter = new AwardsListAdapter(this, awardsArrayList);
         listView = findViewById(R.id.listView);
         listView.setAdapter(awardsListAdapter);
-
-        //        activates the back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.awards);
-    }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LocaleHelper.onAttach(base));
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-//            handles the click for back button
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 }

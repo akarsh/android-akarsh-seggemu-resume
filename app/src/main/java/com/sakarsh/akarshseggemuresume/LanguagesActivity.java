@@ -12,7 +12,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class LanguagesActivity extends AppCompatActivity {
+public class LanguagesActivity extends BaseActivity {
 
     ListView listView;
 
@@ -30,27 +30,7 @@ public class LanguagesActivity extends AppCompatActivity {
         LanguagesListAdapter languagesListAdapter = new LanguagesListAdapter(this, languagesArrayList);
         listView = findViewById(R.id.listView);
         listView.setAdapter(languagesListAdapter);
-
-        //        activates the back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.languages);
-    }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LocaleHelper.onAttach(base));
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-//            handles the click for back button
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 }

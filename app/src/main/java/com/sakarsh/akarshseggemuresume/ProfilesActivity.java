@@ -16,7 +16,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class ProfilesActivity extends AppCompatActivity {
+public class ProfilesActivity extends BaseActivity {
 
     Integer[] imagesOfProfilesArrays = new Integer[]{
             R.drawable.twitter,
@@ -61,27 +61,7 @@ public class ProfilesActivity extends AppCompatActivity {
                 startActivity(chooser);
             }
         });
-
-        //        activates the back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //            setting the title of the action bar
         getSupportActionBar().setTitle(R.string.profiles);
-    }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LocaleHelper.onAttach(base));
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-//            handles the click for back button
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 }
