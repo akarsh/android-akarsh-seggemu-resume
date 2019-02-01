@@ -5,6 +5,7 @@
 [![Java](https://img.shields.io/badge/java-1.8-blue.svg)](https://developer.android.com/studio/write/java8-support)
 [![Android Studio](https://img.shields.io/badge/android%20studio-3.2.1-green.svg)](https://developer.android.com/studio/)
 [![Build Status](https://travis-ci.com/akarsh/android-akarsh-seggemu-resume.svg?branch=master)](https://travis-ci.com/akarsh/android-akarsh-seggemu-resume)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ec01ba1df913a5e6f2cb/maintainability)](https://codeclimate.com/github/akarsh/android-akarsh-seggemu-resume/maintainability)
 
 This project is developed to show the resume in Android.
 The resume is maintained in a JSON format following resume JSON structure.
