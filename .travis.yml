@@ -42,6 +42,7 @@ before_install:
 
 script:
 - ./gradlew build
+- ./gradlew connectedCheck
 
 after_success:
 - bash <(curl -s https://codecov.io/bash)
