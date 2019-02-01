@@ -42,7 +42,6 @@ public class ProfilesListAdapter extends ArrayAdapter<Integer> {
             imageView.setVisibility(View.GONE);
         }
 
-
         return rowView;
     }
 
