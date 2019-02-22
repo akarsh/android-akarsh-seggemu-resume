@@ -86,4 +86,36 @@ public class ResumeSchemaActivityTest {
             }
         };
     }
+
+    @Test
+    public void getName() {
+    }
+
+    @Test
+    public void getImage() {
+    }
+
+    @Test
+    public void getClassName() {
+    }
+
+    @Test
+    public void getIntentName() {
+    }
+
+    @Test
+    public void setName() {
+    }
+
+    @Test
+    public void setImage() {
+    }
+
+    @Test
+    public void setClassName() {
+    }
+
+    @Test
+    public void setIntentName() {
+    }
 }
