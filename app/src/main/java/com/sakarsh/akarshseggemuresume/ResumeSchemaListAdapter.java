@@ -1,6 +1,7 @@
 package com.sakarsh.akarshseggemuresume;
 
 import android.app.Activity;
+import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,17 +9,19 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ResumeSchemaListAdapter extends ArrayAdapter<Integer> {
-    private final Activity activity;
-    private final Integer[] resumeSchemaArrays;
-    private final Integer[] imagesOfResumeSchemaArrays;
+import java.util.ArrayList;
+import java.util.List;
 
-    public ResumeSchemaListAdapter(Activity activity, Integer[] resumeSchemaArrays, Integer[] imagesOfResumeSchemaArrays) {
-        super(activity, R.layout.activity_linear_layout_main, resumeSchemaArrays);
+public class ResumeSchemaListAdapter extends ArrayAdapter<ResumeSchema> {
+    private final Activity activity;
+    private List<ResumeSchema> resumeSchemaList = new ArrayList<>();
+
+
+    public ResumeSchemaListAdapter(Activity activity, ArrayList<ResumeSchema> resumeSchemaList) {
+        super(activity, R.layout.activity_linear_layout_main, resumeSchemaList);
 
         this.activity = activity;
-        this.resumeSchemaArrays = resumeSchemaArrays;
-        this.imagesOfResumeSchemaArrays = imagesOfResumeSchemaArrays;
+        this.resumeSchemaList = resumeSchemaList;
     }
 
     public View getView(int position, View view, ViewGroup parent) {
@@ -27,16 +30,16 @@ public class ResumeSchemaListAdapter extends ArrayAdapter<Integer> {
         TextView textTitle = rowView.findViewById(R.id.textView);
         ImageView imageView = rowView.findViewById(R.id.imageView);
 
-        if (resumeSchemaArrays[position] != null) {
-            textTitle.setText(resumeSchemaArrays[position]);
+        ResumeSchema resumeSchema = resumeSchemaList.get(position);
+
+        if (resumeSchema != null) {
+            textTitle.setText(resumeSchema.getName());
+            imageView.setImageResource(resumeSchema.getImage());
         } else {
             textTitle.setVisibility(View.GONE);
-        }
-        if (imagesOfResumeSchemaArrays[position] != null) {
-            imageView.setImageResource(imagesOfResumeSchemaArrays[position]);
-        } else {
             imageView.setVisibility(View.GONE);
         }
+
         return rowView;
     }
 }
