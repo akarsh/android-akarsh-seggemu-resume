@@ -30,6 +30,38 @@ public class ResumeSchemaActivity extends BaseActivity {
     private String languageToLoad, resumeFileName;
     private Resume resume;
 
+    // Adding list objects with their corresponding name, image, class and intent names to the object
+    ResumeSchema contact = new ResumeSchema(R.string.contact, R.drawable.card_index_1f4c7, ContactActivity.class, "contact");
+    ResumeSchema info = new ResumeSchema(R.string.info, R.drawable.information_source_2139, InfoActivity.class, "info");
+    ResumeSchema summary = new ResumeSchema(R.string.summary,  R.drawable.speech_balloon_1f4ac, SummaryActivity.class, "summary");
+    ResumeSchema profiles = new ResumeSchema(R.string.profiles, R.drawable.bust_in_silhouette_1f464, ProfilesActivity.class, "profiles");
+    ResumeSchema skills = new ResumeSchema(R.string.skills, R.drawable.hammer_and_wrench_1f6e0, SkillsActivity.class, "skills");
+    ResumeSchema languages = new ResumeSchema(R.string.languages, R.drawable.globe_with_meridians_1f310, LanguagesActivity.class, "languages");
+    ResumeSchema education = new ResumeSchema(R.string.education,R.drawable.graduation_cap_1f393, EducationActivity.class, "education");
+    ResumeSchema experience = new ResumeSchema(R.string.experience, R.drawable.hourglass_with_flowing_sand_23f3, ExperienceActivity.class,"experience");
+    ResumeSchema volunteer = new ResumeSchema(R.string.volunteer, R.drawable.rosette_1f3f5, VolunteerActivity.class, "volunteer");
+    ResumeSchema awards = new ResumeSchema(R.string.awards, R.drawable.trophy_1f3c6, AwardsActivity.class, "awards");
+    ResumeSchema publications = new ResumeSchema(R.string.publications, R.drawable.books_1f4da, PublicationsActivity.class, "publications");
+    ResumeSchema interests = new ResumeSchema(R.string.interests, R.drawable.black_heart_suit_2665, InterestsActivity.class, "interests");
+    ResumeSchema references = new ResumeSchema(R.string.references, R.drawable.memo_1f4dd, ReferencesActivity.class, "references");
+
+    // Array of resume schema to store object names
+    ResumeSchema[] resumeSchemaData = new ResumeSchema[] {
+            contact,
+            info,
+            summary,
+            profiles,
+            skills,
+            languages,
+            education,
+            experience,
+            volunteer,
+            awards,
+            publications,
+            interests,
+            references
+    };
+
     private static final String downloadDirectory = "ResumeJSONDownloads";
 
     @Override
@@ -46,46 +78,11 @@ public class ResumeSchemaActivity extends BaseActivity {
 
         setContentsForListView();
 
-        // Adding list objects with their corresponding name, image, class and intent names to the object
-        ResumeSchema contact = new ResumeSchema(R.string.contact, R.drawable.card_index_1f4c7, ContactActivity.class, "contact");
-        // Adding the object to the array list
-        resumeSchemaArrayList.add(contact);
-
-        ResumeSchema info = new ResumeSchema(R.string.info, R.drawable.information_source_2139, InfoActivity.class, "info");
-        resumeSchemaArrayList.add(info);
-
-        ResumeSchema summary = new ResumeSchema(R.string.summary,  R.drawable.speech_balloon_1f4ac, SummaryActivity.class, "summary");
-        resumeSchemaArrayList.add(summary);
-
-        ResumeSchema profiles = new ResumeSchema(R.string.profiles, R.drawable.bust_in_silhouette_1f464, ProfilesActivity.class, "profiles");
-        resumeSchemaArrayList.add(profiles);
-
-        ResumeSchema skills = new ResumeSchema(R.string.skills, R.drawable.hammer_and_wrench_1f6e0, SkillsActivity.class, "skills");
-        resumeSchemaArrayList.add(skills);
-
-        ResumeSchema languages = new ResumeSchema(R.string.languages, R.drawable.globe_with_meridians_1f310, LanguagesActivity.class, "languages");
-        resumeSchemaArrayList.add(languages);
-
-        ResumeSchema education = new ResumeSchema(R.string.education,R.drawable.graduation_cap_1f393, EducationActivity.class, "education");
-        resumeSchemaArrayList.add(education);
-
-        ResumeSchema experience = new ResumeSchema(R.string.experience, R.drawable.hourglass_with_flowing_sand_23f3, ExperienceActivity.class,"experience");
-        resumeSchemaArrayList.add(experience);
-
-        ResumeSchema volunteer = new ResumeSchema(R.string.volunteer, R.drawable.rosette_1f3f5, VolunteerActivity.class, "volunteer");
-        resumeSchemaArrayList.add(volunteer);
-
-        ResumeSchema awards = new ResumeSchema(R.string.awards, R.drawable.trophy_1f3c6, AwardsActivity.class, "awards");
-        resumeSchemaArrayList.add(awards);
-
-        ResumeSchema publications = new ResumeSchema(R.string.publications, R.drawable.books_1f4da, PublicationsActivity.class, "publications");
-        resumeSchemaArrayList.add(publications);
-
-        ResumeSchema interests = new ResumeSchema(R.string.interests, R.drawable.black_heart_suit_2665, InterestsActivity.class, "interests");
-        resumeSchemaArrayList.add(interests);
-
-        ResumeSchema references = new ResumeSchema(R.string.references, R.drawable.memo_1f4dd, ReferencesActivity.class, "references");
-        resumeSchemaArrayList.add(references);
+        // using enhanced for loop to loop the array of resume schema data
+        for (ResumeSchema dataValue : resumeSchemaData) {
+            // Adding the object to the array list
+            resumeSchemaArrayList.add(dataValue);
+        }
     }
 
     private void setContentsForListView() {
