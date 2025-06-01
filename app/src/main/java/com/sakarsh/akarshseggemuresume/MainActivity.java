@@ -28,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
     ListView listView;
 
-    private static final String englishJSONURL = "https://raw.githubusercontent.com/akarsh/akarsh.github.io/master/json/en/resume.json";
-    private static final String deutschJSONURL = "https://raw.githubusercontent.com/akarsh/akarsh.github.io/master/json/de/resume.json";
-    public static final String mainURL = "https://raw.githubusercontent.com/akarsh/akarsh.github.io/master/json/";
+    private static final String englishJSONURL = "https://raw.githubusercontent.com/akarsh/akarsh.github.io/main/json/en/resume.json";
+    private static final String deutschJSONURL = "https://raw.githubusercontent.com/akarsh/akarsh.github.io/main/json/de/resume.json";
+    public static final String mainURL = "https://raw.githubusercontent.com/akarsh/akarsh.github.io/main/json/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
