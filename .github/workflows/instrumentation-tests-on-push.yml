@@ -68,8 +68,8 @@ jobs:
         if: success()
         uses: codecov/codecov-action@v5
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true
           flags: android-instrumentation
           name: instrumentation-${{ matrix.api-level }}
-          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
           verbose: true
