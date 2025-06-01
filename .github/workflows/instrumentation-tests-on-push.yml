@@ -26,7 +26,10 @@ jobs:
 
       - name: Build project
         run: ./gradlew build
-      
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
       - name: Start Android emulator
         uses: ReactiveCircus/android-emulator-runner@v2
         with:
