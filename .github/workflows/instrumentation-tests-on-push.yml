@@ -6,6 +6,7 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
       - name: Checkout Repository
@@ -25,6 +26,11 @@ jobs:
 
       - name: Set Up Android SDK
         uses: android-actions/setup-android@v3
+
+      - name: Update Android SDK Command-line Tools
+        run: |
+          yes | sdkmanager --update
+          yes | sdkmanager --install "cmdline-tools;latest"
 
       - name: Set Up Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -52,7 +58,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build Project
-        run: ./gradlew build --parallel --daemon --warning-mode all
+        run: ./gradlew build --warning-mode all
 
       - name: Run Instrumentation Tests
         uses: reactivecircus/android-emulator-runner@v2
