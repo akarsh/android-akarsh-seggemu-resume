@@ -29,6 +29,8 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          distribution: commandlinetools
 
       - name: Start Android emulator
         uses: ReactiveCircus/android-emulator-runner@v2
