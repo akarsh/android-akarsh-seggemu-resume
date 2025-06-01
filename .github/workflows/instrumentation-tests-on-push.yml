@@ -63,6 +63,8 @@ jobs:
           disable-animations: true
           script: ./gradlew connectedCheck
 
-      - name: Upload Coverage to Codecov
+      - name: Upload Coverage report to Codecov
         if: success()
-        run: bash <(curl -s https://codecov.io/bash)
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
