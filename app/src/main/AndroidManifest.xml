@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sakarsh.akarshseggemuresume">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Downloading the JSON file from the internet -->
     <uses-permission android:name="android.permission.INTERNET" />
