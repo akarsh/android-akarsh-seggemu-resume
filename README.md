@@ -5,8 +5,7 @@
 [![Java](https://img.shields.io/badge/java-1.8-blue.svg)](https://developer.android.com/studio/write/java8-support)
 [![Android Studio](https://img.shields.io/badge/android%20studio-3.2.1-green.svg)](https://developer.android.com/studio/)
 [![GitHub Actions](https://github.com/akarsh/android-akarsh-seggemu-resume/actions/workflows/instrumentation-tests-on-push.yml/badge.svg)](https://github.com/akarsh/android-akarsh-seggemu-resume/actions/workflows/instrumentation-tests-on-push.yml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/ec01ba1df913a5e6f2cb/maintainability)](https://codeclimate.com/github/akarsh/android-akarsh-seggemu-resume/maintainability)
-[![codecov](https://codecov.io/gh/akarsh/android-akarsh-seggemu-resume/branch/master/graph/badge.svg)](https://codecov.io/gh/akarsh/android-akarsh-seggemu-resume)
+[![codecov](https://codecov.io/github/akarsh/android-akarsh-seggemu-resume/graph/badge.svg?token=nBCzaKRCQW)](https://codecov.io/github/akarsh/android-akarsh-seggemu-resume)
 
 This project is developed to show the resume in Android.
 The resume is maintained in a JSON format following resume JSON structure.
