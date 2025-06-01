@@ -1,8 +1,7 @@
 name: instrumentation-tests-on-push
 run-name: Instrumentation Tests on push 
 
-on:
-  push
+on: push
 
 jobs:
   build:
@@ -27,6 +26,15 @@ jobs:
 
       - name: Build project
         run: ./gradlew build
+      
+      - name: Start Android emulator
+        uses: ReactiveCircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          target: google_apis
+          arch: x86_64
+          profile: pixel_3
+          emulator-options: -no-window -no-audio
 
       - name: Run instrumentation tests
         run: ./gradlew connectedCheck
